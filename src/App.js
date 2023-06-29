@@ -6,6 +6,7 @@ import About from './components/About';
 import Profile from './components/Profile';
 import Setting from './components/Setting';
 import User from './components/User';
+import Postpage from './components/Postpage';
 
 import { Routes, Route, Link} from 'react-router-dom'
 
@@ -18,7 +19,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='about' element={<About />} />
-          
+          <Route path='/post/:postId' element={<Postpage />} />
           <Route path='account'> 
               <Route path='profile' element={<Profile />} />
               <Route path='setting' element={<Setting />} />
