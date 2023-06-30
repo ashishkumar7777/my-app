@@ -3,13 +3,18 @@ import { saveAs } from 'file-saver';
 import { toBlob } from 'html-to-image';
 import JSZip from 'jszip';
 
+import Banner from './Banner';
+
 
 function Home() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [inputText, setInputText] = useState('');
   const [propertText, setPropertText] = useState('2 BHK FLat');
+  const [carpetInput, setCarpetInputt] = useState('1350 sqft');
+  const [LocationInput, setLocationInput] = useState('India, delhi');
+  const [priceInput, setPriceInput] = useState('95 Lac onwards');
 
-
+  
   
   const componentRefs = [
     useRef(),
@@ -22,19 +27,32 @@ function Home() {
     setSelectedImage(URL.createObjectURL(file));
   };
 
-  const handleInputChange = (event) => {
-    setInputText(event.target.value); 
+  const priceInputChange = (event) => {
+    setPriceInput(event.target.value); 
   };
 
   const proprtyInputChange = (event) => {
     setPropertText(event.target.value);
   };
 
+  const carpetInputChange = (event) => {
+    setCarpetInputt(event.target.value); 
+  };
+
+  const LocationInputChange = (event) => {
+    setLocationInput(event.target.value); 
+  };
+
 
  
   const getFontSize = () => {
-    return inputText.length > 13 ? '15px' : 'inherit';
+    return propertText.length > 11 ? '12px' : '16px';
   };
+
+  const getLocationFontSize = () => {
+    return LocationInput.length > 13 ? '10px' : '11px';
+  };
+
 
 
   const handleExport = () => {
@@ -63,33 +81,43 @@ function Home() {
     <div style={styles.container}>
 
       <div style={styles.inputContaner}>
-        <h6 style={styles.inputText}>text 1</h6>
-        <input style={styles.inputContent} type="text" value={inputText} onChange={handleInputChange} />
+        <h6 style={styles.inputText}>PRICE</h6>
+        <input style={styles.inputContent} type="text" value={priceInput} onChange={priceInputChange} />
 
-        <h6 style={styles.inputText}>text 2</h6>
+        <h6 style={styles.inputText}>PROPERTY TYPE</h6>
         <input style={styles.inputContent} type="text" value={propertText} onChange={proprtyInputChange} />
 
-        <h6 style={styles.inputText}>text 3</h6>
-        <input style={styles.inputContent} type="text" value={inputText} onChange={handleInputChange} />
+        <h6 style={styles.inputText}>CARPET AREA</h6>
+        <input style={styles.inputContent} type="text" value={carpetInput} onChange={carpetInputChange} />
 
-        <h6 style={styles.inputText}>text 4</h6>
-        <input style={styles.inputContent} type="text" value={inputText} onChange={handleInputChange} />
+        <h6 style={styles.inputText}>LOCATION</h6>
+        <input style={styles.inputContent} type="text" value={LocationInput} onChange={LocationInputChange} />
 
         <input type="file" accept="image/*" onChange={handleImageUpload} />
         <button style={styles.saveButton} onClick={handleExport}>Save</button>
+
+        
       </div>
 
       <div>
           {/* banner 1 */}
-          <div ref={componentRefs[0]} style={styles.banner1}>
-            <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }}></div>
-           <div style={styles.textonbanner1}>
-              <h1 style={{ fontSize: getFontSize(), fontSize: '15px' }}>{propertText}</h1>
-              <h1 style={{ fontSize: getFontSize(), fontSize: '15px' }}>1310 sqft</h1>
-              <h1 style={{ fontSize: getFontSize(), fontSize: '9px' }}>Korangrapady, Udupi</h1>
-           </div>
+          <div ref={componentRefs[0]} >
+            <div style={styles.banner1}>
+                  <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }}></div>
+                <div style={styles.textonbanner1}>
+                
+                    <h1 style={{ fontSize: getFontSize()}}>{propertText}</h1>
+                    <h1 style={{ fontSize: '13px' }}>{carpetInput}</h1>
+                    <h1 style={{ fontSize: getLocationFontSize(), width: '65px', float: 'right' }}>{LocationInput}</h1>
+                </div>
 
-           <img src={require('../assets/curve.png')} style={styles.cruveImgBanner1}/>
+                <img src={require('../assets/banner1.png')} style={styles.cruveImgBanner1}/>
+                <div style={styles.priceStar}>
+                      <div style={{position: 'relative'}}>
+                        <p style={styles.priceText}>{priceInput}</p>
+                      </div>
+                </div>
+            </div>
           </div>
 
           {/* banner 2 */}
@@ -129,6 +157,24 @@ const styles = {
     flexDirection: 'row',
     position: 'relative',
   },
+  priceText: {
+    fontSize: '10px',
+    color: '#000',
+    lineHeight: '10px',
+    fontWeight: '600',
+    width: '50px',
+    textAlign: 'center'
+  },
+  priceStar:{
+    position: 'absolute',
+    left: '43%',
+    top: '31%',
+    width: '75px',
+    height: '75px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   cruveImgBanner1:{
     position: 'absolute',
     width: '100%'
@@ -136,9 +182,10 @@ const styles = {
   textonbanner1:{
     zIndex: 1,
     position: 'absolute',
+    top: '30px',
     right: '9px',
     textAlign: 'end',
-    width: '100px'
+    width: '120px'
   },
   section: {
     width: "500px",
