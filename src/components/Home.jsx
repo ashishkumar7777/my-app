@@ -131,13 +131,14 @@ function Home() {
           {selectedImage && <img src={selectedImage} alt="Selected" />}
             <h1 style={{ fontSize: getFontSize() }}>{inputText}</h1>
           </div>
-      </div>
-      
-      
-      
-      
 
-    </div>
+         
+            
+          </div>
+
+
+
+      </div>
   );
 }
 
