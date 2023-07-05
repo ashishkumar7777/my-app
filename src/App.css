@@ -1,9 +1,29 @@
 
 .App-header {
-  background-color: #282c34;
+  background-color: #1c2039;
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   color: white;
+  box-sizing: border-box;
 }
 
+.App-header .bg-color{
+  background-color: #313959;;
+}
 
+.App-header .inputsText {
+  font-size: 12px !important;
+  margin-left: 16px !important;
+  
+}
+.App-header .inputsText::before{
+  content: '';
+  position: absolute;
+  left: 30px;
+  background: url(./assets/arrow-icon.png);
+  width: 50px;
+  height: 50px;
+  background-size: 12px;
+  background-repeat: no-repeat;
+  margin-top: 3px;
+}

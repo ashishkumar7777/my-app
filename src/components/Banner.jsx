@@ -1,12 +1,15 @@
 import React from 'react'
 
-function Banner() {
+const Banner = React.forwardRef((ref) => {
   return (
-    <div style={{ width: '500px', border: '1px solid red' }}>
+    <div ref={ref} style={{ width: '500px', border: '1px solid red' }}>
       
         <h1>hello</h1>
+        
       </div>
-  )
-}
+  );
+});
 
-export default Banner
+export default Banner;
+
+
