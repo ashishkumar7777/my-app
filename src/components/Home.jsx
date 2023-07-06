@@ -1,9 +1,13 @@
 import React, { useState, useRef } from 'react';
+import  Draggable  from 'react-draggable';
+import EditText from 'react-edit-text';
+import 'react-edit-text/dist/index.css';
+
 import { saveAs } from 'file-saver';
 import { toBlob } from 'html-to-image';
 import JSZip from 'jszip';
 
-import Banner from './Banner';
+
 
 
 function Home() {
@@ -31,6 +35,22 @@ function Home() {
     useRef(),
     useRef()
   ];
+
+
+  function formatText(text) {
+    var words = text.split(" ");
+    var formattedText = words[0];
+  
+    for (var i = 1; i < words.length; i++) {
+      if (words[i].endsWith(",")) {
+        formattedText += "\n" + words[i];
+      } else {
+        formattedText += " " + words[i];
+      }
+    }
+  
+    return formattedText;
+  }
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -77,7 +97,7 @@ function Home() {
     return propertText.length > 11 ? '19px' : '29px';
   }
   const banner7getFontSize = () => {
-    return propertText.length > 11 ? '16px' : '22px';
+    return propertText.length > 11 ? '15px' : '22px';
   }
   const banner8getFontSize = () => {
     return propertText.length > 11 ? '11px' : '18px';
@@ -102,15 +122,15 @@ function Home() {
 
 
   const getLocationFontSize = () => {
-    return LocationInput.length > 13 ? '10px' : '11px';
+    return LocationInput.length > 22 ? '8px' : '9px';
   };
 
   const banner2getLocationFontSize = () => {
-    return LocationInput.length > 13 ? '9px' : '9px';
+    return LocationInput.length > 22 ? '8px' : '9px';
   }
 
   const banner3getLocationFontSize = () => {
-    return LocationInput.length > 13 ? '12px' : '13px';
+    return LocationInput.length > 22 ? '10px' : '13px';
   }
 
   const banner4getLocationFontSize = () => {
@@ -118,7 +138,7 @@ function Home() {
   }
 
   const banner5getLocationFontSize = () => {
-    return LocationInput.length > 13 ? '30px' : '30px';
+    return LocationInput.length > 22 ? '22px' : (LocationInput.length > 13 ? '26px' : '30px');
   }
   const banner6getLocationFontSize = () => {
     return LocationInput.length > 13 ? '13px' : '15px';
@@ -127,10 +147,10 @@ function Home() {
     return LocationInput.length > 13 ? '12px' : '14px';
   }
   const banner8getLocationFontSize = () => {
-    return LocationInput.length > 13 ? '9px' : '10px';
+    return LocationInput.length > 22 ? '8px' : (LocationInput.length > 13 ? '9px' : '10px');
   }
   const banner9getLocationFontSize = () => {
-    return LocationInput.length > 13 ? '22px' : '26px';
+    return LocationInput.length > 22 ? '16px' : (LocationInput.length > 13 ? '18px' : '26px');
   }
   const banner10getLocationFontSize = () => {
     return LocationInput.length > 13 ? '10px' : '14px';
@@ -142,7 +162,7 @@ function Home() {
     return LocationInput.length > 13 ? '14px' : '19px';
   }
   const banner13getLocationFontSize = () => {
-    return LocationInput.length > 13 ? '11px' : '13px';
+    return LocationInput.length > 22 ? '9px' : (LocationInput.length > 13 ? '10px' : '15px');
   }
 
   
@@ -212,6 +232,8 @@ function Home() {
         <input type="file" accept="image/*" onChange={handleImageUpload} />
         <button style={styles.saveButton} onClick={handleExport}>Save</button>
 
+       
+
         
       </div>
 
@@ -222,9 +244,9 @@ function Home() {
                   <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }}></div>
                 <div style={styles.textonbanner1}>
                 
-                    <h1 style={{ fontSize: getFontSize()}}>{propertText}</h1>
-                    <h1 style={{ fontSize: '13px' }}>{carpetInput}</h1>
-                    <h1 style={{ fontSize: getLocationFontSize(), width: '65px', float: 'right' }}>{LocationInput}</h1>
+                <Draggable><h1 style={{ fontSize: getFontSize()}}>{propertText}</h1></Draggable>
+                <Draggable><h1 style={{ fontSize: '13px' }}>{carpetInput}</h1></Draggable>
+                <Draggable><div style={{width: '65px', float: 'right'}}><h1 style={{ fontSize: getLocationFontSize(),  float: 'right' }}>{formatText(LocationInput)}</h1></div></Draggable>
                 </div>
 
                 <img src={require('../assets/banner1.png')} style={styles.cruveImgBanner1}/>
@@ -240,11 +262,11 @@ function Home() {
           <div className='bg-color' ref={componentRefs[1]} style={{width: '200px', height: '200px'}}>
           <div style={styles.banner2}>
                   <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }}></div>
-                <div style={styles.textonbanner2}>
+                  <div style={styles.textonbanner2}>
                 
-                    <h1 style={{ fontSize: banner2getFontSize()}}>{propertText}</h1>
-                    <h1 style={{ fontSize: '10px', paddingTop: '8px' }}>{carpetInput}</h1>
-                    <h1 style={{ fontSize: banner2getLocationFontSize(), width: '50px', float: 'right', paddingTop: '3px' }}>{LocationInput}</h1>
+                  <Draggable><h1 style={{ fontSize: banner2getFontSize(), cursor: 'move', paddingTop: '7px'}}>{propertText}</h1></Draggable>
+                    <Draggable><h1 style={{ fontSize: '10px', paddingTop: '0px', cursor: 'move' }}>{carpetInput}</h1></Draggable>
+                    <Draggable><h1 style={{ cursor: 'move', fontSize: banner2getLocationFontSize(), width: '66px', float: 'right', paddingTop: '0px' }}>{LocationInput}</h1></Draggable>
                 </div>
 
                 <img src={require('../assets/banner-2.png')} style={styles.cruveImgBanner1}/>
@@ -262,9 +284,9 @@ function Home() {
                   <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }}></div>
                 <div style={styles.textonbanner3}>
                 
-                    <h1 style={{ fontSize: banner3getFontSize()}}>{propertText}</h1>
-                    <h1 style={{ fontSize: '13px', paddingTop: '8px' }}>{carpetInput}</h1>
-                    <h1 style={{ fontSize: banner3getLocationFontSize(), width: '70px', float: 'right' }}>{LocationInput}</h1>
+                <Draggable><h1 style={{ fontSize: banner3getFontSize()}}>{propertText}</h1></Draggable>
+                <Draggable><h1 style={{ fontSize: '13px', paddingTop: '8px' }}>{carpetInput}</h1></Draggable>
+                <Draggable><h1 style={{ fontSize: banner3getLocationFontSize(), width: '82px', float: 'right' }}>{LocationInput}</h1></Draggable>
                 </div>
 
                 <img src={require('../assets/banner-3.png')} style={styles.cruveImgBanner1}/>
@@ -282,9 +304,9 @@ function Home() {
                   <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }}></div>
                 <div style={styles.textonbanner3}>
                 
-                    <h1 style={{ fontSize: banner4getFontSize()}}>{propertText}</h1>
-                    <h1 style={{ fontSize: '13px', paddingTop: '8px' }}>{carpetInput}</h1>
-                    <h1 style={{ fontSize: banner4getLocationFontSize(), width: '70px', float: 'right' }}>{LocationInput}</h1>
+                <Draggable><h1 style={{ fontSize: banner4getFontSize()}}>{propertText}</h1></Draggable>
+                <Draggable><h1 style={{ fontSize: '13px', paddingTop: '8px' }}>{carpetInput}</h1></Draggable>
+                <Draggable><h1 style={{ fontSize: banner4getLocationFontSize(), width: '95px', float: 'right' }}>{LocationInput}</h1></Draggable>
                 </div>
 
                 <img src={require('../assets/banner-4.png')} style={styles.cruveImgBanner1}/>
@@ -325,9 +347,9 @@ function Home() {
                   <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }}></div>
                 <div style={styles.textonbanner7}>
                 
-                    <h1 style={{ fontSize: banner7getFontSize()}}>{propertText}</h1>
-                    <h1 style={{ fontSize: '15px', paddingTop: '1px' }}>{carpetInput}</h1>
-                    <h1 style={{ fontSize: banner7getLocationFontSize(), width: '85px', float: 'right' }}>{LocationInput}</h1>
+                <Draggable><h1 style={{ fontSize: banner7getFontSize()}}>{propertText}</h1></Draggable>
+                    <Draggable><h1 style={{ fontSize: '15px', paddingTop: '1px' }}>{carpetInput}</h1></Draggable>
+                    <Draggable><h1 style={{ fontSize: banner7getLocationFontSize(), width: '85px', float: 'right' }}>{LocationInput}</h1></Draggable>
                 </div>
 
                 <img src={require('../assets/banner-7.png')} style={styles.cruveImgBanner1}/>
@@ -345,10 +367,10 @@ function Home() {
                   <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '60%', height: '100%', position: 'relative', left: '128px' }}></div>
                 <div style={styles.textonbanner8}>
                 
-                    <h1 style={{ fontSize: banner8getFontSize(), marginBottom: '2px', marginTop: banner8getMargin()}}>{propertText}</h1>
+                <Draggable><h1 style={{ fontSize: banner8getFontSize(), marginBottom: '2px', marginTop: banner8getMargin()}}>{propertText}</h1></Draggable>
                     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                    <h1 style={{ fontSize: '12px', paddingTop: '0px' }}>{carpetInput} | </h1>
-                    <h1 style={{ fontSize: banner8getLocationFontSize(), width: '80px', float: 'left', marginLeft: '3px' }}>{LocationInput}</h1>
+                    <Draggable><h1 style={{ fontSize: '12px', paddingTop: '0px' }}>{carpetInput} | </h1></Draggable>
+                    <Draggable><h1 style={{ fontSize: banner8getLocationFontSize(), width: '80px', float: 'left', marginLeft: '3px' }}>{LocationInput}</h1></Draggable>
                     </div>
                     
                 </div>
@@ -371,7 +393,7 @@ function Home() {
                     <h1 style={{ fontSize: banner9getFontSize(), marginBottom: '2px', marginTop: banner9getMargin(), lineHeight: '35px'}}>{propertText}</h1>
                     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                     <h1 style={{ fontSize: '26px', paddingTop: '5px', fontWeight: '500' }}>{carpetInput}  | </h1>
-                    <h1 style={{ fontSize: banner9getLocationFontSize(), width: '230px', float: 'left', marginLeft: '5px', fontWeight: '500' }}>{LocationInput}</h1>
+                    <h1 style={{ fontSize: banner9getLocationFontSize(), width: '230px', float: 'left', marginLeft: '5px', fontWeight: '500', paddingTop: '7px', whiteSpace: 'nowrap' }}>{LocationInput}</h1>
                     </div>
                     
                 </div>
@@ -391,10 +413,10 @@ function Home() {
                   <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '60%', height: '100%', position: 'relative', left: '187px' }}></div>
                 <div style={styles.textonbanner10}>
                 
-                    <h1 style={{ fontSize: banner10getFontSize(), marginBottom: '2px', marginTop: banner10getMargin(), lineHeight: '12px', width: '100px'}}>{propertText}</h1>
-                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '90px'}}>
-                      <h1 style={{ fontSize: '12px', paddingTop: '0px', fontWeight: '500', margin: '5px' }}>{carpetInput}   </h1>
-                      <h1 style={{ fontSize: banner10getLocationFontSize(),  float: 'left', margin: '0px', fontWeight: '500', textAlign: 'center' }}>{LocationInput}</h1>
+                <Draggable><h1 style={{ fontSize: banner10getFontSize(), marginBottom: '2px', marginTop: banner10getMargin(), lineHeight: '12px', width: '100px'}}>{propertText}</h1></Draggable>
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '105px'}}>
+                    <Draggable><h1 style={{ fontSize: '12px', paddingTop: '0px', fontWeight: '500', margin: '5px' }}>{carpetInput}   </h1></Draggable>
+                    <Draggable><h1 style={{ fontSize: banner10getLocationFontSize(),  float: 'left', margin: '0px', fontWeight: '500', textAlign: 'center' }}>{LocationInput}</h1></Draggable>
                     </div>
                     
                 </div>
@@ -415,10 +437,10 @@ function Home() {
                   <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '60%', height: '100%', position: 'relative', left: '291px' }}></div>
                 <div style={styles.textonbanner11}>
                 
-                    <h1 style={{ fontSize: banner11getFontSize(), marginBottom: '2px', marginTop: banner11getMargin(), lineHeight: '20px', width: '160px'}}>{propertText}</h1>
+                <Draggable><h1 style={{ fontSize: banner11getFontSize(), marginBottom: '2px', marginTop: banner11getMargin(), lineHeight: '20px', width: '160px'}}>{propertText}</h1></Draggable>
                     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '153px'}}>
-                      <h1 style={{ fontSize: '19px', paddingTop: '0px', fontWeight: '500', margin: '5px' }}>{carpetInput}   </h1>
-                      <h1 style={{ fontSize: banner11getLocationFontSize(),  float: 'left', margin: '0px', fontWeight: '500' }}>{LocationInput}</h1>
+                    <Draggable><h1 style={{ fontSize: '19px', paddingTop: '0px', fontWeight: '500', margin: '5px' }}>{carpetInput}   </h1></Draggable>
+                    <Draggable><h1 style={{ fontSize: banner11getLocationFontSize(),  float: 'left', margin: '0px', fontWeight: '500', textAlign: 'center' }}>{LocationInput}</h1></Draggable>
                     </div>
                     
                 </div>
@@ -438,10 +460,10 @@ function Home() {
                   <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '60%', height: '100%', position: 'relative', left: '387px' }}></div>
                 <div style={styles.textonbanner12}>
                 
-                    <h1 style={{ fontSize: banner12getFontSize(), marginBottom: '2px', marginTop: banner12getMargin(), lineHeight: '20px', width: '170px'}}>{propertText}</h1>
-                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '153px'}}>
-                      <h1 style={{ fontSize: '19px', paddingTop: '0px', fontWeight: '500', margin: '5px' }}>{carpetInput}   </h1>
-                      <h1 style={{ fontSize: banner12getLocationFontSize(),  float: 'left', margin: '0px', fontWeight: '500' }}>{LocationInput}</h1>
+                <Draggable><h1 style={{ fontSize: banner12getFontSize(), marginBottom: '2px', marginTop: banner12getMargin(), lineHeight: '20px', width: '170px'}}>{propertText}</h1></Draggable>
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '215px'}}>
+                    <Draggable><h1 style={{ fontSize: '19px', paddingTop: '0px', fontWeight: '500', margin: '5px' }}>{carpetInput}   </h1></Draggable>
+                    <Draggable><h1 style={{ fontSize: banner12getLocationFontSize(),  float: 'left', margin: '0px', fontWeight: '500', textAlign: 'center' }}>{LocationInput}</h1></Draggable>
                     </div>
                     
                 </div>
@@ -461,10 +483,10 @@ function Home() {
                   <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '50%', height: '100%', position: 'relative', left: '160px' }}></div>
                 <div style={styles.textonbanner13}>
                 
-                    <h1 style={{ fontSize: banner13getFontSize(), marginBottom: '2px', marginTop: banner13getMargin(), lineHeight: '20px', width: '150px'}}>{propertText}</h1>
+                <Draggable><h1 style={{ fontSize: banner13getFontSize(), marginBottom: '2px', marginTop: banner13getMargin(), lineHeight: '20px', width: '150px'}}>{propertText}</h1></Draggable>
                     <div >
                      
-                      <h1 style={{ fontSize: banner13getLocationFontSize(),  float: 'left', margin: '0px', fontWeight: '500' }}>{LocationInput}</h1>
+                    <Draggable><h1 style={{ fontSize: banner13getLocationFontSize(),  float: 'left', margin: '0px', fontWeight: '500', width: '148px' }}>{LocationInput}</h1></Draggable>
                     </div>
                     
                 </div>
@@ -486,7 +508,7 @@ function Home() {
                 
                     <h1 style={{ fontSize: banner5getFontSize()}}>{propertText}</h1>
                     <h1 style={{ fontSize: '30px', paddingTop: '15px' }}>{carpetInput}</h1>
-                    <h1 style={{ fontSize: banner5getLocationFontSize(), width: '200px', float: 'right' }}>{LocationInput}</h1>
+                    <h1 style={{ fontSize: banner5getLocationFontSize(), width: '252px', float: 'right' }}>{LocationInput}</h1>
                 </div>
 
                 <img src={require('../assets/banner-5.png')} style={styles.cruveImgBanner1}/>
@@ -601,7 +623,7 @@ const styles = {
   textonbanner2:{
     zIndex: 1,
     position: 'absolute',
-    top: '30px',
+    top: '13px',
     right: '9px',
     textAlign: 'end',
     width: '85px'
