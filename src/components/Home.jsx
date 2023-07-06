@@ -553,6 +553,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
+    overflow: 'hidden',
+    boxSizing: 'border-box'
   },
   priceText: {
     fontSize: '10px',
@@ -619,6 +621,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
+    overflow: 'hidden',
+    boxSizing: 'border-box'
   },
   textonbanner2:{
     zIndex: 1,
@@ -653,6 +657,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
+    overflow: 'hidden',
+    boxSizing: 'border-box'
   },
   textonbanner3:{
     zIndex: 1,
@@ -687,6 +693,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
+    overflow: 'hidden',
+    boxSizing: 'border-box'
   },
   textonbanner4:{
     zIndex: 1,
@@ -721,6 +729,10 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
+    overflow: 'hidden',
+    boxSizing: 'border-box',
+    overflow: 'hidden',
+    boxSizing: 'border-box'
   },
   textonbanner5:{
     zIndex: 1,
@@ -755,6 +767,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
+    overflow: 'hidden',
+    boxSizing: 'border-box'
   },
   textonbanner6:{
     zIndex: 1,
@@ -789,6 +803,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
+    boxSizing: 'border-box',
+    overflow: 'hidden',
     boxSizing: 'border-box'
   },
   textonbanner7:{
@@ -824,6 +840,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
+    overflow: 'hidden',
+    boxSizing: 'border-box'
   },
   textonbanner8:{
     zIndex: 1,
@@ -858,6 +876,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
+    overflow: 'hidden',
+    boxSizing: 'border-box'
   },
   textonbanner9:{
     zIndex: 1,
@@ -892,6 +912,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
+    overflow: 'hidden',
+    boxSizing: 'border-box'
     
   },
   textonbanner10:{
@@ -931,6 +953,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
+    overflow: 'hidden',
+    boxSizing: 'border-box'
     
   },
   textonbanner11:{
@@ -970,7 +994,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
-    
+    overflow: 'hidden',
+    boxSizing: 'border-box'
   },
   textonbanner12:{
     zIndex: 1,
@@ -1009,7 +1034,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'cloumn',
     position: 'relative',
-    
+    overflow: 'hidden',
+    boxSizing: 'border-box'
   },
   textonbanner13:{
     zIndex: 1,
