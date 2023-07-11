@@ -1,4 +1,5 @@
 
+
 .App-header {
   background-color: #1c2039;
   min-height: 100vh;
@@ -14,8 +15,10 @@
 .App-header .inputsText {
   font-size: 12px !important;
   margin-left: 16px !important;
-  
+  z-index: 1;
 }
+
+
 .App-header .inputsText::before{
   content: '';
   position: absolute;
@@ -26,4 +29,25 @@
   background-size: 12px;
   background-repeat: no-repeat;
   margin-top: 3px;
+}
+
+.know-more::after{
+  content: 'KNOW MORE';
+  position: absolute;
+  left: 42px !important;
+  font-size: 9px;
+  color: #d83433;
+  top: 77px !important;
+  font-weight: bold;
+}
+
+.know-more-banner2::after{
+  content: 'KNOW MORE';
+  position: absolute;
+left: -41px !important;
+font-size: 10px;
+color: #d83433;
+top: 146px !important;
+font-weight: 900;
+width: 100px;
 }

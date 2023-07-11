@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import  Draggable  from 'react-draggable';
 import EditText from 'react-edit-text';
 import 'react-edit-text/dist/index.css';
@@ -13,11 +14,13 @@ import JSZip from 'jszip';
 function Home() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [inputText, setInputText] = useState('');
+  const [propIdInput, setPropIdInput] = useState('');
   const [propertText, setPropertText] = useState('3 BHK FLat');
   const [carpetInput, setCarpetInputt] = useState('1350 sqft');
   const [LocationInput, setLocationInput] = useState('India, delhi');
   const [priceInput, setPriceInput] = useState('95 Lac onwards');
 
+  
   
   
   const componentRefs = [
@@ -55,6 +58,10 @@ function Home() {
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
+  };
+
+   const propIdChange = (event) => {
+    setPropIdInput(event.target.value); 
   };
 
   const priceInputChange = (event) => {
@@ -192,7 +199,7 @@ function Home() {
     const zip = new JSZip();
     const promises = [];
 
-    const componentNames = ['250x250-Square', '200x200-Small Square', '300x250-Inline Rectangle', '336x280-Large Rectangle', '1200x628-Custom size 2', '300x600-Half Page', '160x600-Wide Skyscraper', '320x100-Large Mobile', '970x250-Billboard', '468x60-Main Banner', '728x90-Leaderboard', '970x90-Large Leaderboard', '320x50-Mobile Leaderboard']; // Array of component names
+    const componentNames = [`${propIdInput}-250x250-Square`, `${propIdInput}-200x200-Small Square`, `${propIdInput}-300x250-Inline Rectangle`, `${propIdInput}-336x280-Large Rectangle`, `${propIdInput}-1200x628-Custom size 2`, `${propIdInput}-300x600-Half Page`, `${propIdInput}-160x600-Wide Skyscraper`, `${propIdInput}-320x100-Large Mobile`, `${propIdInput}-970x250-Billboard`, `${propIdInput}-468x60-Main Banner`, `${propIdInput}-728x90-Leaderboard`, `${propIdInput}-970x90-Large Leaderboard`, `${propIdInput}-320x50-Mobile Leaderboard`]; // Array of component names
 
     componentRefs.forEach((ref, index) => {
       const promise = toBlob(ref.current)
@@ -208,7 +215,7 @@ function Home() {
       .then(() => {
         zip.generateAsync({ type: 'blob' })
           .then(function (content) {
-            saveAs(content, 'components.zip');
+            saveAs(content, `${propIdInput}.zip`);
           });
       });
   };
@@ -217,6 +224,10 @@ function Home() {
     <div style={styles.container}>
 
       <div style={styles.inputContaner}>
+
+        <h6 className='inputsText' style={styles.inputText}>Property ID</h6>
+        <input style={styles.inputContent} type="text" value={propIdInput} onChange={propIdChange} />
+
         <h6 className='inputsText' style={styles.inputText}>Price</h6>
         <input style={styles.inputContent} type="text" value={priceInput} onChange={priceInputChange} />
 
@@ -231,6 +242,8 @@ function Home() {
 
         <input type="file" accept="image/*" onChange={handleImageUpload} />
         <button style={styles.saveButton} onClick={handleExport}>Save</button>
+
+        <Link to="/about" style={{fontSize: '17px', color: '#fff', marginTop: '23px', textAlign: 'center', textDecoration: 'none', fontStyle: 'italic'}}>design 2</Link>
 
        
 
@@ -262,14 +275,14 @@ function Home() {
           <div className='bg-color' ref={componentRefs[1]} style={{width: '200px', height: '200px'}}>
           <div style={styles.banner2}>
                   <div style={{ backgroundImage: `url(${selectedImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }}></div>
-                  <div style={styles.textonbanner2}>
+                  <div className='know-more-banner2' style={styles.textonbanner2}>
                 
                   <Draggable><h1 style={{ fontSize: banner2getFontSize(), cursor: 'move', paddingTop: '7px'}}>{propertText}</h1></Draggable>
                     <Draggable><h1 style={{ fontSize: '10px', paddingTop: '0px', cursor: 'move' }}>{carpetInput}</h1></Draggable>
                     <Draggable><h1 style={{ cursor: 'move', fontSize: banner2getLocationFontSize(), width: '66px', float: 'right', paddingTop: '0px' }}>{LocationInput}</h1></Draggable>
                 </div>
 
-                <img src={require('../assets/banner-2.png')} style={styles.cruveImgBanner1}/>
+                <img  src={require('../assets/banner-2-new1.png')} style={styles.cruveImgBanner1}/>
                 <div style={styles.banner2priceStar}>
                       <div style={{position: 'relative'}}>
                         <p style={styles.banner2priceText}>{priceInput}</p>
@@ -368,14 +381,14 @@ function Home() {
                 <div style={styles.textonbanner8}>
                 
                 <Draggable><h1 style={{ fontSize: banner8getFontSize(), marginBottom: '2px', marginTop: banner8getMargin()}}>{propertText}</h1></Draggable>
-                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                    <div className='know-more' style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                     <Draggable><h1 style={{ fontSize: '12px', paddingTop: '0px' }}>{carpetInput} | </h1></Draggable>
-                    <Draggable><h1 style={{ fontSize: banner8getLocationFontSize(), width: '80px', float: 'left', marginLeft: '3px' }}>{LocationInput}</h1></Draggable>
+                    <Draggable><h1  style={{ fontSize: banner8getLocationFontSize(), width: '80px', float: 'left', marginLeft: '3px' }}>{LocationInput}</h1></Draggable>
                     </div>
                     
                 </div>
 
-                <img src={require('../assets/banner-8n.png')} style={styles.cruveImgBanner1}/>
+                <img  src={require('../assets/banner-8-new1.png')} style={styles.cruveImgBanner1}/>
                 <div style={styles.banner8priceStar}>
                       <div style={{position: 'relative'}}>
                         <p style={styles.banner8priceText}>{priceInput}</p>
@@ -605,7 +618,8 @@ const styles = {
   },
   inputContent: {
     marginBottom : '10px',
-    height: '22px'
+    height: '22px',
+    zIndex: '1'
   },
   saveButton: {
    padding: '8px',
@@ -714,7 +728,7 @@ const styles = {
   },
   banner4priceStar:{
     position: 'absolute',
-    left: '43%',
+    left: '44%',
     top: '39%',
     width: '75px',
     height: '75px',
